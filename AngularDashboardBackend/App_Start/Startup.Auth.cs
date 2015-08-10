@@ -43,20 +43,13 @@ namespace AngularDashboardBackend
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
 
-            //app.Map("/signalr", map =>
-            //{
-            //    map.UseCors(CorsOptions.AllowAll);
-            //    var hubConfig = new HubConfiguration
-            //    {
-            //        EnableJSONP = true
-            //    };
-            //    app.MapSignalR(hubConfig);
-            //});
+            app.UseCors(CorsOptions.AllowAll);
+            app.MapSignalR();
 
-            app.MapSignalR(new HubConfiguration
-            {
-                EnableJSONP = true
-            });
+            //app.MapSignalR(new HubConfiguration
+            //{
+            //    EnableJSONP = true
+            //});
 
             app.MapSignalR<Hubs.DashboardConnection>("/signalr-db", new ConnectionConfiguration
             {
